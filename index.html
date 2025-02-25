@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abstract Reasoning Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .quiz-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        .question {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .image-sequence {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .image-sequence img {
+            width: 100%; /* Makes the image take full width of its container */
+            max-width: 600px; /* You can adjust this to control max size */
+            height: auto; /* Maintains aspect ratio */
+            margin: 10px 0;
+        }
+        .choices {
+            list-style-type: none;
+            padding: 0;
+        }
+        .choices li {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+        .choices input {
+            margin-right: 10px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .correct {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .incorrect {
+            background-color: #f44336;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .label-letter {
+            margin-left: 10px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="quiz-container">
+        <h1>Abstract Reasoning Quiz</h1>
+        <div class="question">
+            Which of the following images completes the abstract sequence?
+        </div>
+
+        <!-- The abstract sequence image -->
+        <div class="image-sequence">
+            <!-- Replace with the actual path to the abstract sequence image -->
+            <img src="images/abstract_sequence.png" alt="Abstract Image Sequence">
+        </div>
+
+        <!-- Answer choices with images -->
+        <form action="#">
+            <ul class="choices">
+                <li id="choice1-container">
+                    <input type="radio" id="choice1" name="answer" value="1">
+                    <label for="choice1">
+                        <!-- Replace with actual image for choice 1 -->
+                        <img src="images/choice1.png" alt="Choice 1"> <span class="label-letter">A</span>
+                    </label>
+                </li>
+                <li id="choice2-container">
+                    <input type="radio" id="choice2" name="answer" value="2">
+                    <label for="choice2">
+                        <!-- Replace with actual image for choice 2 -->
+                        <img src="images/choice2.png" alt="Choice 2"> <span class="label-letter">B</span>
+                    </label>
+                </li>
+                <li id="choice3-container">
+                    <input type="radio" id="choice3" name="answer" value="3">
+                    <label for="choice3">
+                        <!-- Replace with actual image for choice 3 -->
+                        <img src="images/choice3.png" alt="Choice 3"> <span class="label-letter">C</span>
+                    </label>
+                </li>
+                <li id="choice4-container">
+                    <input type="radio" id="choice4" name="answer" value="4">
+                    <label for="choice4">
+                        <!-- Replace with actual image for choice 4 -->
+                        <img src="images/choice4.png" alt="Choice 4"> <span class="label-letter">D</span>
+                    </label>
+                </li>
+                <li id="choice5-container">
+                    <input type="radio" id="choice5" name="answer" value="5">
+                    <label for="choice5">
+                        <!-- Replace with actual image for choice 5 -->
+                        <img src="images/choice5.png" alt="Choice 5"> <span class="label-letter">E</span>
+                    </label>
+                </li>
+            </ul>
+            <button type="button" onclick="checkAnswer()">Submit Answer</button>
+        </form>
+        
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function checkAnswer() {
+            var selectedAnswer = document.querySelector('input[name="answer"]:checked');
+            var result = document.getElementById('result');
+
+            // Reset the choices background color
+            resetChoices();
+
+            if (selectedAnswer) {
+                // Correct answer is choice 4 (adjust this as per your correct answer)
+                var correctChoice = "4"; 
+
+                if (selectedAnswer.value === correctChoice) {
+                    // Highlight correct answer
+                    document.getElementById('choice' + correctChoice + '-container').classList.add("correct");
+                } else {
+                    // Highlight incorrect answer and the correct answer
+                    document.getElementById('choice' + selectedAnswer.value + '-container').classList.add("incorrect");
+                    document.getElementById('choice' + correctChoice + '-container').classList.add("correct");
+                }
+            } else {
+                result.innerHTML = "<span style='color: red;'>Please select an answer.</span>";
+            }
+        }
+
+        function resetChoices() {
+            // Remove previous highlight from choices
+            var choices = document.querySelectorAll('.choices li');
+            choices.forEach(function(choice) {
+                choice.classList.remove("correct", "incorrect");
+            });
+        }
+    </script>
+
+</body>
+</html>
